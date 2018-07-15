@@ -39,7 +39,7 @@
 							<tool id="de.innot.avreclipse.tool.linker.winavr.app.release.445992617" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.app.release">
 								<option id="de.innot.avreclipse.linker.option.otherlinkargs.1685674254" name="Other Arguments" superClass="de.innot.avreclipse.linker.option.otherlinkargs" useByScannerDiscovery="false" value="-Wl,-gc-sections" valueType="string"/>
 								<option id="de.innot.avreclipse.linker.option.libpath.993534549" name="Libraries Path (-L)" superClass="de.innot.avreclipse.linker.option.libpath" useByScannerDiscovery="false" valueType="stringList">
-									<listOptionValue builtIn="false" value="/home/abdullah/Desktop/MQTT_Embeddedfab/Libs"/>
+									<listOptionValue builtIn="false" value="/home/abdullah/Desktop/MQTT_Embeddedfab/EmbeddedFab_Mqtt_Course/Libs"/>
 								</option>
 								<option id="de.innot.avreclipse.linker.option.libs.2066975710" name="Libraries (-l)" superClass="de.innot.avreclipse.linker.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="MQTT"/>

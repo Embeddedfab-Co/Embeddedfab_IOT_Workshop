@@ -16,6 +16,7 @@ extern byte s8UDP_Buffer[MSG_BUFFER_SIZE] ;
 extern word16 json_length;
 extern FSE_CircularBuffer_v2 mqtt_sub_buf;
 extern FSE_CircularBuffer_v2 nrf_spi_buf;
+extern char rf_chanel ;
 
 #if NRF_24
 
@@ -118,6 +119,7 @@ static word16 EF_void_ideal(ret_codes_t *state)
 	EF_void_TimerChangeTimeOut(WATING_MQTT_MSG_TIMER_ID,MQTT_PUB_DELAY);
 	EF_void_TimerStart(WATING_MQTT_MSG_TIMER_ID);
 
+
 	static U32_t counter_loop = 0 ;
 	static U32_t timer_loop = 0 ;
 
@@ -145,12 +147,13 @@ static word16 EF_void_ideal(ret_codes_t *state)
 		EF_void_TimerReset(WATING_MQTT_MSG_TIMER_ID);
 		*state = ok;
 		Pub_timer = 100;
+
+		counter_loop = EF_u32_TimerGetCounterValue(WATING_MQTT_MSG_TIMER_ID);
+
 		return length;
 
 	}/* end of read data */
 
-
-	else
 #endif
 	if(!mqtt_sub_buf.isEmpty(&mqtt_sub_buf))   //if data is ready
 	{
@@ -164,15 +167,16 @@ static word16 EF_void_ideal(ret_codes_t *state)
 
 		if(Button == 0)
 		{
-			PORTC |= (1 << 3);
-			PORTB = 0;
+			PORTD |= (1 << 6);
+
 		}
 		else
 		{
-			PORTC |= (1 << 3);
-			PORTB = 1;
+			PORTD &= ~(1 << 6);
+
 		}
 
+		counter_loop = EF_u32_TimerGetCounterValue(WATING_MQTT_MSG_TIMER_ID);
 
 	}/* end of read data */
 
@@ -192,6 +196,7 @@ static word16 EF_void_ideal(ret_codes_t *state)
 	{
 		PORTD |= (1 << 7);
 		counter_loop = EF_u32_TimerGetCounterValue(WATING_MQTT_MSG_TIMER_ID);
+		EF_nrf24l01_init(rf_chanel);
 		*state = fail;
 	}
 

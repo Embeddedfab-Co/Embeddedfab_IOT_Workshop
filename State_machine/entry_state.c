@@ -18,8 +18,6 @@ static void EF_void_MCAL_Init()
 {
 	DDRD |= (1 << 6) |(1 << 7) ;
 	DDRA |= (1 << 1) | (1 << 2);
-	DDRC |= (1 << 3);
-	DDRB = 0x0F;
 
 
 	EF_void_TimerInit();
