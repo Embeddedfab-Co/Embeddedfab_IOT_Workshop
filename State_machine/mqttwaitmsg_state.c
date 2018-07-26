@@ -9,6 +9,8 @@ int Mqtt_Wait_status = true;
 ret_codes_t mqttwaitmsg_state(void)
 {
 
+#if GSM_SIM900
+
 	if(GSM_reset_flag)
 	{
 		return reset ;
@@ -24,6 +26,7 @@ ret_codes_t mqttwaitmsg_state(void)
 		EF_int_GSM_FlushQueue_MQTT();
 		EF_int_GSM_FlushQueue_AT();
 	}
+#endif
 
 	return repeat;
 

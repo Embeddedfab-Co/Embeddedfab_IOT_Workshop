@@ -2,17 +2,16 @@
 
 ret_codes_t error_state(void)
 {
+#if GSM_SIM900
 
 	EF_int_GSM_FlushQueue_AT();
 	EF_int_GSM_FlushQueue_MQTT();
-	EF_Void_GSM_delay(2000);
-	GSM_reset_flag = false;
-
 
 	if(GSM_reset_flag)
 	{
 		return reset ;
 	}
+#endif
 	return ok;
 
 }

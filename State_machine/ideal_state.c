@@ -18,6 +18,8 @@ extern FSE_CircularBuffer_v2 mqtt_sub_buf;
 extern FSE_CircularBuffer_v2 nrf_spi_buf;
 extern char rf_chanel ;
 
+char Mqtt_pub_topic_name[] = DEFAULT_TOPIC_NAME;
+
 #if NRF_24
 
 static int32_t encode_json_data(byte * pRecvBuf)
@@ -27,8 +29,8 @@ static int32_t encode_json_data(byte * pRecvBuf)
 	char incomingbyte = 0;
 	int index = 0;
 	int Temperature = 0;
-	static int Humidity = 0;
-	char node_name = 0;
+	int32_t rc = 0 ;
+
 
 	for(int i = 0 ; i < 32 ; i ++)
 	{
@@ -65,49 +67,49 @@ static int32_t encode_json_data(byte * pRecvBuf)
 
 			if(dataframe[0] == 'b')
 			{
-				node_name = 'b';
+				strcpy(Mqtt_pub_topic_name , BBETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 			else if(dataframe[0] == 'g')
 			{
-				node_name = 'g';
+				strcpy(Mqtt_pub_topic_name , GBETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 			else if(dataframe[0] == 'd')
 			{
-				node_name = 'd';
+				strcpy(Mqtt_pub_topic_name , DBETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 			else if(dataframe[0] == 'f')
 			{
-				node_name = 'f';
+				strcpy(Mqtt_pub_topic_name , FBETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 			else if(dataframe[0] == 'i')
 			{
-				node_name = 'i';
+				strcpy(Mqtt_pub_topic_name , IBETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 			else if(dataframe[0] == 'a')
 			{
-				node_name = 'a';
+				strcpy(Mqtt_pub_topic_name , ABETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 			else if(dataframe[0] == 'j')
 			{
-				node_name = 'j';
+				strcpy(Mqtt_pub_topic_name , JBETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 			else if(dataframe[0] == 'e')
 			{
-				node_name = 'e';
+				strcpy(Mqtt_pub_topic_name , EBETA_TOPIC_NAME);
+				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
 			}
 		}
 
 	}
 
-	int32_t rc = 0 ;
-	//	rc = sprintf((char *)pRecvBuf,(const char *)"{\"temperature\":%d,\"humidity\":%d}" ,  Temperature , Humidity);
-	rc = sprintf((char *)pRecvBuf,(const char *)"%d" , Temperature);
 
-	Humidity+=10;
-	if(Humidity > 1000)
-	{
-		Humidity=0;
-	}
 	return rc;
 }
 #endif
@@ -122,12 +124,14 @@ static word16 EF_void_ideal(ret_codes_t *state)
 
 	static U32_t counter_loop = 0 ;
 	static U32_t timer_loop = 0 ;
+#if GSM_SIM900
 
 	if(GSM_reset_flag)
 	{
 		*state = reset;
 		return 0 ;
 	}
+#endif
 
 	*state = repeat;
 
@@ -212,6 +216,7 @@ ret_codes_t ideal_state(void)
 {
 	ret_codes_t read_state =  repeat;
 	json_length = EF_void_ideal(&read_state);
+
 	return read_state;
 }
 

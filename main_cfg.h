@@ -11,6 +11,7 @@
 #include "Utilities/EF_SpechialTIMER.h"
 
 #define GSM_SIM900 						true
+#define WIFI_ESP						false
 
 #define NRF_24                  		true
 #define MQTTCLIENT                 	 	true
@@ -27,14 +28,14 @@
 #define UBIDOTS_IP						"50.23.124.68"
 #define THINGSPEAK_IP					"52.45.80.142"
 
-#define SERVER_IP						THINGSPEAK_IP
+#define SERVER_IP						ECLIPSE_IP
 
 #define EMBEDDEDFAB_PORT				1885
 #define ECLIPSE_PORT					1883
 #define UBIDOTS_PORT					1883
 #define THINGSPEAK_PORT					1883
 
-#define SERVER_PORT						UBIDOTS_PORT
+#define SERVER_PORT						ECLIPSE_PORT
 
 #define WATING_MQTT_MSG_TIMER_ID 		INPUT_CAPTURE_ID
 

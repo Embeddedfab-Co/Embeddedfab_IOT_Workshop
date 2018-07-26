@@ -9,6 +9,11 @@ U32_t Pub_timer = 40;
 byte s8UDP_Buffer[MSG_BUFFER_SIZE] ;
 word16 json_length = 0 ;
 int Init_flag = false;
+#if NRF_24
+FSE_CircularBuffer_v2 nrf_spi_buf;
+#endif
+FSE_CircularBuffer_v2 mqtt_sub_buf;
+
 
 //=========================================================================================================
 //============================================== MCAL Init ================================================
@@ -16,6 +21,8 @@ int Init_flag = false;
 
 static void EF_void_MCAL_Init()
 {
+
+	_delay_ms(1000);
 	DDRD |= (1 << 6) |(1 << 7) ;
 	DDRA |= (1 << 1) | (1 << 2);
 
@@ -42,11 +49,17 @@ static void EF_void_MQTT_Init()
 
 
 	//************************************************************************************
+#if GSM_SIM900
+
 //	Pub_timer = 80;
 //	PORTA |= (1 << 1);
+//
 //	EF_Void_GSM_delay(400);
 //	PORTA &= ~(1 << 1);
-//	EF_Void_GSM_delay(2000);
+//
+//	EF_Void_GSM_delay(2000)
+#endif
+
 #endif
 
 }

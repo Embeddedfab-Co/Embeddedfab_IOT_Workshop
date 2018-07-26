@@ -5,6 +5,8 @@
 #include "../Utilities/std_types.h"
 #include "../Utilities/atcommander/atcommander.h"
 
+#if GSM_SIM900
+
 enum
 {
 	GSM_MQTT_FSEQUEUE = 0,
@@ -186,7 +188,6 @@ void EF_Void_GSM_delay(uint32_t delay_ms);
 
  ******************************************************************************/
 
-#if GSM_SIM900
 /****************************************************************************
  * Function    : EF_Void_GSM_atcommander_init .
  *

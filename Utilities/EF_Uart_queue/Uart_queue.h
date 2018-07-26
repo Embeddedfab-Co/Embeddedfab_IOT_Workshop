@@ -43,11 +43,20 @@ int EF_void_UartFSE_at_QueueUpdate(void );
 int EF_void_UartFSE_mqtt_QueueUpdate(void );
 uint8_t EF_int_Uart_FSEQueuereadArray(unsigned char *data );
 uint8_t EF_int_Uart_FSEQueuereadArray_mqtt(unsigned char *data );
+uint8_t EF_int_Uart_FSEQueuereadArray_mqtt_1(unsigned char *data );
 
 void EF_int_Uart_ClearFSQQueue_AT();
 void EF_int_Uart_ClearFSQQueue_MQTT();
 
 uint8_t EF_uint8_t_Uart_FSEQueuereadByte(unsigned char *data ,int len);
+void EF_mqtt_FSEenqueue(unsigned char * data , int size );
+void EF_at_FSEenqueue(unsigned char * data , int size );
+void EF_at_F_enqueue();
+void EF_at_S_enqueue();
+void EF_at_T_enqueue();
+void EF_at_E_enqueue();
+
+
 //uint8_t EF_uint8_t_Uart_WaitFSEQueuereadByte(unsigned char *data ,unsigned char len);
 
 #endif /* MQTT_QUEUE_H_ */

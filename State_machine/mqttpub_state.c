@@ -17,6 +17,9 @@ extern uint8_t bufferin[NRF24L01_PAYLOAD] ;
 extern uint8_t bufferout[NRF24L01_PAYLOAD] ;
 #endif
 
+extern char Mqtt_pub_topic_name[] ;
+
+
 
 word16 mqttclient_get_packetid(void)
 {
@@ -28,18 +31,21 @@ static void EF_void_Mqtt_Pub(ret_codes_t *state )
 {
 	static int Pub_failed_Counter = 0;
 
+#if GSM_SIM900
+
 	if(GSM_reset_flag)
 	{
 		*state = reset;
 		return  ;
 	}
+#endif
 
 	MqttPublish publish;
 	memset(&publish, 0, sizeof(MqttPublish));
 	publish.retain = 0;
 	publish.qos = qos;
 	publish.duplicate = 0;
-	publish.topic_name = DEFAULT_TOPIC_NAME;
+	publish.topic_name = Mqtt_pub_topic_name;
 	publish.packet_id = mqttclient_get_packetid();
 
 #if NRF_24

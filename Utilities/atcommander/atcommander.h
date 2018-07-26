@@ -13,46 +13,20 @@
 #include <stdarg.h>
 #include "../../main_cfg.h"
 
+#define AT_COMMANDER_MAX_REQUEST_LENGTH 128
+#define AT_COMMANDER_RETRY_DELAY_MS 	100
+#define AT_COMMANDER_MAX_RESPONSE_LENGTH 25
+#define AT_COMMANDER_MAX_RETRIES		 4
 
 
+//#if (GSM_SIM900 == true)
+//#define EF_ATCOMMADER_GSM_SIM900
+//#endif
 
-#if (GSM_SIM900 == true)
-#define EF_ATCOMMADER_GSM_SIM900
-#endif
-
-typedef struct {
-
-
-#if GSM_SIM900
-	char* request_format;
-	char* expected_response;
-#endif
-
-
-}AtCommand;
 
 
 typedef struct {
 	int response_delay_ms;
-
-#if GSM_SIM900
-	AtCommand set_closeecho_command;
-	AtCommand get_ok_command;
-	AtCommand set_simconncetion_command;
-	AtCommand set_ipstart_command;
-	AtCommand set_ipsend_command;
-	AtCommand set_ipclose_command;
-	AtCommand set_siminternet_command;
-	AtCommand get_ipstart_1_command;
-	AtCommand get_ipstart_2_command;
-	AtCommand set_ipsendecho_command;
-	AtCommand set_powerdown_command;
-	AtCommand set_ipmux_command;
-
-
-#endif
-
-
 }AtCommanderPlatform;
 
 
@@ -66,6 +40,8 @@ typedef struct {
 //	void (*log_function)(const char *, ...);
 
 	int connected;
+	int size;
+	char* Data;
 //	unsigned long baud;
 //	int device_baud;
 //	void* device;
@@ -88,6 +64,17 @@ int at_commander_IPSend_Request(AtCommanderConfig* config);
 //int at_commander_IPSend_Response(AtCommanderConfig* config);
 int at_commander_SIMInternet_Request(AtCommanderConfig* config);
 int at_commander_close_echo_config(AtCommanderConfig* config);
+
+#endif
+
+#if WIFI_ESP
+int at_commander_IPStart_Request(AtCommanderConfig* config);
+int at_commander_close_echo_config(AtCommanderConfig* config);
+int atcommander_set_UART(AtCommanderConfig* config);
+int at_commander_mode_set(AtCommanderConfig* config);
+int at_commander_rounterconn_set(AtCommanderConfig* config);
+int at_commander_dhcp_set(AtCommanderConfig* config);
+int at_commander_IPSend_Request(AtCommanderConfig* config);
 
 #endif
 

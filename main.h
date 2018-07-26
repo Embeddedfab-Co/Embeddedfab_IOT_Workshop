@@ -31,7 +31,9 @@
 #include "HAL/EF_GSM.h"
 #endif
 
-
+#if	(WIFI_ESP == true)
+#include "HAL/EF_WIFI.h"
+#endif
 
 
 #endif /* APP_H_ */
