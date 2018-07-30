@@ -15,18 +15,24 @@ ret_codes_t mqttwaitmsg_state(void)
 	{
 		return reset ;
 	}
+#endif
 
 	int size = sizeof(SUBSCRIBE_TOPICS_NAME )+ SUBSCRIBE_TOPICS_EX;
-	//	int size = 0;
 	Mqtt_Wait_status = EF_Int_Mqtt_read(&size);
 
 	if(Mqtt_Wait_status != false)
 	{
 
+#if GSM_SIM900
 		EF_int_GSM_FlushQueue_MQTT();
 		EF_int_GSM_FlushQueue_AT();
-	}
 #endif
+#if WIFI_ESP
+
+		EF_int_WIFI_FlushQueue_MQTT();
+		EF_int_WIFI_FlushQueue_AT();
+#endif
+	}
 
 	return repeat;
 

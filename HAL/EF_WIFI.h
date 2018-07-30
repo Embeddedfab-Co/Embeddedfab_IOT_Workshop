@@ -336,9 +336,10 @@ int EF_Int_WIFI_atcommander_ipstart_SetRequest();
  ******************************************************************************/
 int EF_void_WIFI_msg_received();
 
+int EF_Int_Mqtt_read(int *size);
+
 
 #endif
-
 
 
 

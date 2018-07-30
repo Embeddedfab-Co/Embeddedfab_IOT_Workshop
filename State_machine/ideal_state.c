@@ -68,42 +68,90 @@ static int32_t encode_json_data(byte * pRecvBuf)
 			if(dataframe[0] == 'b')
 			{
 				strcpy(Mqtt_pub_topic_name , BBETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 			else if(dataframe[0] == 'g')
 			{
 				strcpy(Mqtt_pub_topic_name , GBETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 			else if(dataframe[0] == 'd')
 			{
 				strcpy(Mqtt_pub_topic_name , DBETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 			else if(dataframe[0] == 'f')
 			{
 				strcpy(Mqtt_pub_topic_name , FBETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 			else if(dataframe[0] == 'i')
 			{
 				strcpy(Mqtt_pub_topic_name , IBETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 			else if(dataframe[0] == 'a')
 			{
 				strcpy(Mqtt_pub_topic_name , ABETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 			else if(dataframe[0] == 'j')
 			{
 				strcpy(Mqtt_pub_topic_name , JBETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 			else if(dataframe[0] == 'e')
 			{
 				strcpy(Mqtt_pub_topic_name , EBETA_TOPIC_NAME);
+#ifdef UBIDOTS_IP
+
 				rc = sprintf((char *)pRecvBuf,(const char *)"{\"value\":%d}" ,  Temperature);
+#endif
+#ifdef THINGSPEAK_IP
+				rc = sprintf((char *)pRecvBuf,(const char *)"%d" ,  Temperature);
+#endif
 			}
 		}
 

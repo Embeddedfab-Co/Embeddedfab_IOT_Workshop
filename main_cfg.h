@@ -10,32 +10,32 @@
 
 #include "Utilities/EF_SpechialTIMER.h"
 
-#define GSM_SIM900 						true
-#define WIFI_ESP						false
+#define GSM_SIM900 						false
+#define WIFI_ESP						true
 
 #define NRF_24                  		true
 #define MQTTCLIENT                 	 	true
 
 #define MQTT_AT_DELAY					400
 
-#define MQTT_CON_DELAY					100
+#define MQTT_CON_DELAY					200
 #define MQTT_PUB_DELAY					4000000
 #define MQTT_KEEPALIVE_DELAY			5000
 #define MQTT_LED_DELAY					3
 
-#define EMBEDDEDFAB_IP					"104.196.119.142"
-#define ECLIPSE_IP						"198.41.30.241"
-#define UBIDOTS_IP						"50.23.124.68"
-#define THINGSPEAK_IP					"52.45.80.142"
+//#define EMBEDDEDFAB_IP					"104.196.119.142"
+//#define ECLIPSE_IP						"198.41.30.241"
+//#define UBIDOTS_IP						"50.23.124.68"
+#define THINGSPEAK_IP					"35.172.255.169"
 
-#define SERVER_IP						ECLIPSE_IP
+#define SERVER_IP						THINGSPEAK_IP
 
-#define EMBEDDEDFAB_PORT				1885
-#define ECLIPSE_PORT					1883
-#define UBIDOTS_PORT					1883
+//#define EMBEDDEDFAB_PORT				1885
+//#define ECLIPSE_PORT					1883
+//#define UBIDOTS_PORT					1883
 #define THINGSPEAK_PORT					1883
 
-#define SERVER_PORT						ECLIPSE_PORT
+#define SERVER_PORT						THINGSPEAK_PORT
 
 #define WATING_MQTT_MSG_TIMER_ID 		INPUT_CAPTURE_ID
 

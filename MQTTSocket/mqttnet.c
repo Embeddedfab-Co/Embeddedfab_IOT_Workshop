@@ -70,7 +70,7 @@ static int NetConnect( const char* host, word16 port,
 
 #if GSM_SIM900
 
-	EF_Void_GSM_connect(host , port);
+	EF_Void_GSM_connect(host , port , timeout_ms);
 #endif
 #if WIFI_ESP
 	EF_Void_WIFI_connect(host , port);

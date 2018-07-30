@@ -6,7 +6,6 @@
 #include "../Utilities/atcommander/atcommander.h"
 
 #if GSM_SIM900
-
 enum
 {
 	GSM_MQTT_FSEQUEUE = 0,
@@ -76,7 +75,7 @@ int EF_Void_GSM_ReadByte();
  *
  * Return Value: Byte received.
  ******************************************************************************/
-int EF_Void_GSM_connect(const char* host, unsigned short port);
+int EF_Void_GSM_connect(const char* host, unsigned short port , int timeout);
 /****************************************************************************
  * Function    : EF_Void_GSM_disconnect .
  *
@@ -266,36 +265,7 @@ int EF_Int_GSM_atcommander_CloseEcho_SetRequest();
  * Return Value: true if command sent false if not.
  ******************************************************************************/
 int EF_Int_GSM_atcommander_IPSendEcho_SetRequest();
-/****************************************************************************
- * Function    : EF_Int_GSM_atcommander_SimConncetion_GetResponse .
- *
- * DESCRIPTION : Get SIM connection
- * 				 INIT connected to zero .
- *
- * CmdCfg used :
- * 				GSM_ATCOMMAND_SIM_READY_RESPONSE 			(+CPIN: READY)
- * 				GSM_ATCOMMAND_SIM_NOT_INSERTED_RESPONSE 	(+CPIN: NOT INSERTED)
- *
- * PARAMETERS  : pointer to response.
- *
- * Return Value: true if command sent false if not.
- ******************************************************************************/
-//int EF_Int_GSM_atcommander_SimConncetion_GetResponse(char * response);
-/****************************************************************************
- * Function    : EF_Int_GSM_atcommander_SimConncetion_SetRequest .
- *
- * DESCRIPTION : Get SIM connection
- * 				 INIT connected to zero .
- *
- * CmdCfg used :
- * 				GSM_ATCOMMAND_SIMCONNECTION_QUERY 			(AT+CPIN?\r\n)
- * 				GSM_ATCOMMAND_SIM_READY_QUERY_RESPONSE	 	(+CPIN: READY)
- *
- * PARAMETERS  : NONE.
- *
- * Return Value: true if command sent false if not.
- ******************************************************************************/
-int EF_Int_GSM_atcommander_SimConncetion_SetRequest();
+
 /****************************************************************************
  * Function    : EF_Int_GSM_atcommander_IPStart_SetRequest .
  *
@@ -341,41 +311,12 @@ int EF_Int_GSM_atcommander_IPSend_SetRequest(unsigned char len);
  * Return Value: true if command sent false if not.
  ******************************************************************************/
 int EF_Int_GSM_atcommander_IPClose_SetRequest();
-/****************************************************************************
- * Function    : EF_Int_GSM_atcommander_IPSend_getResponse .
- *
- * DESCRIPTION : Send data
 
- *
- * CmdCfg used :
- * 				GSM_ATCOMMAND_IPSEND_SET
- * 				GSM_ATCOMMAND_IPSEND_SET_RESPONSE
- *
- * PARAMETERS  : NONE.
- *
- * Return Value: true if command sent false if not.
- ******************************************************************************/
-//int EF_Int_GSM_atcommander_IPSend_GetResponse();
-/****************************************************************************
- * Function    : EF_Int_GSM_atcommander_SIMInternet_SetRequest .
- *
- * DESCRIPTION : check internet connection .
- *
- * CmdCfg used :
- * 				GSM_ATCOMMAND_SIMINTERNET_QUERY
- * 				GSM_ATCOMMAND_SIMINTERNET_QUERY_RESPONSE
- *
- * PARAMETERS  : NONE.
- *
- * Return Value: true if command sent false if not.
- ******************************************************************************/
-int EF_Int_GSM_atcommander_SIMInternet_SetRequest();
 
 int EF_Int_Mqtt_read(int *size);
 
 
 #endif
-
 
 
 #endif /* EF_GSM_H_ */

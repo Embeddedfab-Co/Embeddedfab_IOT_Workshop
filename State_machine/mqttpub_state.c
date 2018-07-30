@@ -68,15 +68,16 @@ static void EF_void_Mqtt_Pub(ret_codes_t *state )
 	else
 	{
 		*state = repeat;
-#if NRF_24
 
-		if(!nrf_spi_buf.isFull(&nrf_spi_buf))
-		{
-			nrf_spi_buf.enqueue(&nrf_spi_buf ,bufferout, ELEMENT_SIZE_V2);
-		}
-#endif
 		if(Pub_failed_Counter > 1)
 		{
+#if NRF_24
+
+			if(!nrf_spi_buf.isFull(&nrf_spi_buf))
+			{
+				nrf_spi_buf.enqueue(&nrf_spi_buf ,bufferout, ELEMENT_SIZE_V2);
+			}
+#endif
 			Pub_failed_Counter = 0;
 			*state = fail;
 		}
